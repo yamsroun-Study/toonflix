@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'widget/button.dart';
+
 void main() {
   runApp(const App());
 }
@@ -13,7 +15,7 @@ class App extends StatelessWidget {
       home: Scaffold(
         backgroundColor: const Color(0xFF181818),
         body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 40),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -35,7 +37,7 @@ class App extends StatelessWidget {
                       Text(
                         'Welcome back',
                         style: TextStyle(
-                          color: Colors.white.withOpacity(0.8),
+                          color: Colors.white.withValues(alpha: 0.8),
                           fontSize: 18,
                         ),
                       ),
@@ -61,20 +63,18 @@ class App extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 25),
-              Row(
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Colors.amber,
-                      borderRadius: BorderRadius.circular(45),
-                    ),
-                    child: const Padding(
-                      padding: EdgeInsets.symmetric(
-                        vertical: 20,
-                        horizontal: 50,
-                      ),
-                      child: Text('Transfer', style: TextStyle(fontSize: 20)),
-                    ),
+                  Button(
+                    text: 'Transfer',
+                    bgColor: Color(0xFFF1B33B),
+                    textColor: Colors.black,
+                  ),
+                  Button(
+                    text: 'Request',
+                    bgColor: Color(0xFF1F2123),
+                    textColor: Colors.white,
                   ),
                 ],
               ),
