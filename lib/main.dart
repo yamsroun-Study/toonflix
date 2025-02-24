@@ -16,12 +16,11 @@ class CounterApp extends StatefulWidget {
 }
 
 class _CounterAppState extends State<CounterApp> {
-  List<int> numbers = [];
+  bool showTitle = true;
 
-  void onClicked() {
+  void toggleTitle() {
     setState(() {
-      numbers.add(numbers.length);
-      print(numbers);
+      showTitle = !showTitle;
     });
   }
 
@@ -33,12 +32,18 @@ class _CounterAppState extends State<CounterApp> {
           titleLarge: TextStyle(color: Colors.red, fontSize: 30),
         ),
       ),
-      home: const Scaffold(
-        backgroundColor: Color(0xFFF4EDDB),
+      home: Scaffold(
+        backgroundColor: const Color(0xFFF4EDDB),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [MyLargeTitle()],
+            children: [
+              showTitle ? const MyLargeTitle() : const Text('nothing'),
+              IconButton(
+                onPressed: toggleTitle,
+                icon: const Icon(Icons.remove_red_eye),
+              ),
+            ],
           ),
         ),
       ),
@@ -46,11 +51,29 @@ class _CounterAppState extends State<CounterApp> {
   }
 }
 
-class MyLargeTitle extends StatelessWidget {
+class MyLargeTitle extends StatefulWidget {
   const MyLargeTitle({super.key});
 
   @override
+  State<MyLargeTitle> createState() => _MyLargeTitleState();
+}
+
+class _MyLargeTitleState extends State<MyLargeTitle> {
+  @override
+  void initState() {
+    super.initState();
+    print('initState()');
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    print('dispose()');
+  }
+
+  @override
   Widget build(BuildContext context) {
+    print('build()');
     return Text(
       'My Large Title',
       style: TextStyle(
